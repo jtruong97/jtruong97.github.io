@@ -1,37 +1,33 @@
 <div class="container ajax-container">
-  <h2 class="text-6 font-weight-600 text-center mb-4">Stardew-n-dew</h2>
+  <h2 class="text-6 font-weight-600 text-center mb-4">FullyBookd</h2>
   <div class="row g-4">
     <div class="col-md-7">
       <div class="owl-carousel owl-theme single-slideshow" data-autoplay="true" data-loop="true" data-nav="true" data-items="1">
-        <div class="item"> <img class="img-fluid" alt="" src="images/projects/stardew1.png"> </div>
-        <div class="item"> <img class="img-fluid" alt="" src="images/projects/stardew2.png"> </div>
-        <div class="item"> <img class="img-fluid" alt="" src="images/projects/stardew3.png"> </div>
+        <div class="item"> <img class="img-fluid" alt="FullyBookd home" src="images/projects/fullybookd1.png"> </div>
+        <div class="item"> <img class="img-fluid" alt="Release calendar" src="images/projects/fullybookd2.png"> </div>
+        <div class="item"> <img class="img-fluid" alt="Private shelf" src="images/projects/fullybookd3.png"> </div>
+        <div class="item"> <img class="img-fluid" alt="Book detail with series status" src="images/projects/fullybookd4.png"> </div>
+        <div class="item"> <img class="img-fluid" alt="Series-aware search" src="images/projects/fullybookd5.gif"> </div>
       </div>
     </div>
     <div class="col-md-5">
-      <h4 class="text-4 font-weight-600">Project Info:</h4>
-      <p>Stardew-n-dew is a small-scale clone of the website "Airbnb", with "Stardew Valley" twist. It is an online marketplace that allows users to book short-term and/or long-term home rentals.</p>
-      <p>As a user of Stardew-n-dew, you can create and curate listings with personalized details to ensure uniqueness. If needed, you can seamlessly edit your listing to reflect any changes or updates.</p>
-      <p>Stardew-n-dew allows users to share their thoughts on other listings through reviews. This will help users find the perfect rental for them as well as provide valuable insight for hosts to make improvements if necessary.</p>
-      <p>Join our community by signing up for Stardew-n-dew today!</p>
+      <h4 class="text-4 font-weight-600">Why I Built It:</h4>
+      <p>I read a lot, and I kept running into the same problem. I'd finish the last published book in a series, hit a cliffhanger, and only then realize the series was unfinished &mdash; sometimes abandoned years earlier. I was tracking what I was reading in a notes app, which made it easy to lose the thread entirely and forget a series existed.</p>
+      <p>Before starting anything new I'd research whether it was complete, and the answer was often wrong. Goodreads didn't solve it. So I built FullyBookd: start only completed series, or follow an unfinished one and get told when the final book is actually out.</p>
+      <h4 class="text-4 font-weight-600 mt-4">What's Interesting:</h4>
+      <p>Built and shipped solo. The catalog has grown from 13,000 to roughly 14,900 titles.</p>
+      <ul class="list-style-2">
+        <li>Scheduled serverless pipelines (Supabase Edge Functions) discover new titles from followed authors and backfill missing metadata &mdash; bounded batches, oldest-first queue rotation, and a rate-limit circuit breaker so runs resume where they left off.</li>
+        <li>Metadata reconciled across three external APIs (Hardcover, Google Books, Open Library) with per-field fallback, validating candidate publication dates against an independently-sourced anchor year rather than taking last-write. A 0&ndash;100 quality score sets refresh cadence.</li>
+        <li>Local-first search queries the Postgres catalog through a fuzzy-match RPC before falling back to external APIs, with coverage-weighted relevance ranking and series-sibling awareness &mdash; so searching a series name surfaces its sequels.</li>
+        <li>Catalog deduplication automated in PL/pgSQL with normalized title/author matching, run via pg_cron with dry-run queries gating destructive merges.</li>
+        <li>OAuth 2.0 and JWT auth with row-level security policies, making shelves, ratings, and reviews private by default.</li>
+      </ul>
       <h4 class="text-4 font-weight-600 mt-4">Project Details:</h4>
       <ul class="list-style-2">
-        <li><span class="text-dark font-weight-600 me-2">Technologies:</span>JavaScript, Express, React, Redux, HTML5, CSS, Sequelize, PostgreSQL, Node.js, Git</li>
-        <li><span class="text-dark font-weight-600 me-2">URL:</span><a href="https://jasmine-api-project.onrender.com/" target="_blank">https://jasmine-api-project.onrender.com/</a></li>
-        <li><span class="text-dark font-weight-600 me-2">GitHub:</span><a href="https://github.com/jtruong97/Stardew-n-dew" target="_blank">Stardew-n-dew</a></li>
+        <li><span class="text-dark font-weight-600 me-2">Technologies:</span>TypeScript, React, Tailwind CSS, TanStack Query, Supabase, PostgreSQL, PL/pgSQL, Edge Functions, OAuth 2.0, JWT, Cloudflare</li>
+        <li><span class="text-dark font-weight-600 me-2">URL:</span><a href="https://fully-bookd.com" target="_blank" rel="noopener noreferrer">fully-bookd.com</a></li>
       </ul>
-      <!-- <div class="row no-gutters align-items-center">
-        <div class="col-auto text-dark font-weight-600">Social: </div>
-        <div class="col-auto">
-          <ul class="social-icons">
-            <li class="social-icons-facebook"><a data-toggle="tooltip" href="http://www.facebook.com/" target="_blank" title="" data-original-title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-            <li class="social-icons-twitter"><a data-toggle="tooltip" href="http://www.twitter.com/" target="_blank" title="" data-original-title="Twitter"><i class="fab fa-twitter"></i></a></li>
-            <li class="social-icons-google"><a data-toggle="tooltip" href="http://www.google.com/" target="_blank" title="" data-original-title="Google"><i class="fab fa-google"></i></a></li>
-            <li class="social-icons-instagram"><a data-toggle="tooltip" href="http://www.instagram.com/" target="_blank" title="" data-original-title="Instagram"><i class="fab fa-instagram"></i></a></li>
-            <li class="social-icons-email"><a data-toggle="tooltip" href="http://www.instagram.com/" target="_blank" title="" data-original-title="Email"><i class="fas fa-envelope"></i></a></li>
-          </ul>
-        </div>
-      </div> -->
     </div>
   </div>
 </div>
