@@ -3,11 +3,11 @@
   <div class="row g-4">
     <div class="col-md-7">
       <div class="owl-carousel owl-theme single-slideshow" data-autoplay="true" data-loop="true" data-nav="true" data-items="1">
-        <div class="item"> <img class="img-fluid" alt="FullyBookd home" src="images/projects/fullybookd1.png"> </div>
-        <div class="item"> <img class="img-fluid" alt="Release calendar" src="images/projects/fullybookd2.png"> </div>
-        <div class="item"> <img class="img-fluid" alt="Private shelf" src="images/projects/fullybookd3.png"> </div>
-        <div class="item"> <img class="img-fluid" alt="Book detail with series status" src="images/projects/fullybookd4.png"> </div>
-        <div class="item"> <img class="img-fluid" alt="Series-aware search" src="images/projects/fullybookd5.gif"> </div>
+        <div class="item"> <img class="img-fluid" alt="Tracking a series, showing complete vs ongoing status" src="images/projects/fullybookd1.png"> </div>
+        <div class="item"> <img class="img-fluid" alt="Release calendar of upcoming books" src="images/projects/fullybookd2.png"> </div>
+        <div class="item"> <img class="img-fluid" alt="Library with reading status and filters" src="images/projects/fullybookd3.png"> </div>
+        <div class="item"> <img class="img-fluid" alt="Book detail page with series position" src="images/projects/fullybookd4.png"> </div>
+        <div class="item"> <img class="img-fluid" alt="Reading summary with streak and yearly goal" src="images/projects/fullybookd5.png"> </div>
       </div>
     </div>
     <div class="col-md-5">
@@ -16,6 +16,7 @@
       <p>Before starting anything new I'd research whether it was complete, and the answer was often wrong. Goodreads didn't solve it. So I built FullyBookd: start only completed series, or follow an unfinished one and get told when the final book is actually out.</p>
       <h4 class="text-4 font-weight-600 mt-4">What's Interesting:</h4>
       <p>Built and shipped solo. The catalog has grown from 13,000 to roughly 14,900 titles.</p>
+      <p>Beyond series tracking, it handles the rest of a reading life: a release calendar, per-format ownership (physical, e-book, audiobook), page-level progress, reading streaks, and yearly goals.</p>
       <ul class="list-style-2">
         <li>Scheduled serverless pipelines (Supabase Edge Functions) discover new titles from followed authors and backfill missing metadata &mdash; bounded batches, oldest-first queue rotation, and a rate-limit circuit breaker so runs resume where they left off.</li>
         <li>Metadata reconciled across three external APIs (Hardcover, Google Books, Open Library) with per-field fallback, validating candidate publication dates against an independently-sourced anchor year rather than taking last-write. A 0&ndash;100 quality score sets refresh cadence.</li>
