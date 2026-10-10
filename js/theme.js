@@ -193,7 +193,7 @@ $(this).magnificPopup({
                 var paint = function (i) {
                   var slide = realItems().eq(i);
                   if (!slide.length) return;
-                  panel.find('.fb-step').text((i + 1) + ' / ' + total);
+                  panel.find('.fb-step').text(('0' + (i + 1)).slice(-2) + ' / ' + ('0' + total).slice(-2));
                   panel.find('.fb-cap-title').text(slide.data('cap-title') || '');
                   panel.find('.fb-cap-body').text(slide.data('cap-body') || '');
                 };
