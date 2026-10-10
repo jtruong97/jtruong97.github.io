@@ -183,6 +183,28 @@ $(this).magnificPopup({
 					992:{items: a.data('items-lg'),}
 				}	
                 });
+
+              // Sync caption panel to the active slide (FullyBookd feature tour)
+              if (a.hasClass('fb-shots')) {
+                var panel = a.closest('.fb-tour').find('.fb-caption');
+                // exclude Owl's loop clones so indexes map to real slides
+                var realItems = function () { return a.find('.owl-item:not(.cloned) .item'); };
+                var total = realItems().length;
+                var paint = function (i) {
+                  var slide = realItems().eq(i);
+                  if (!slide.length) return;
+                  panel.find('.fb-step').text((i + 1) + ' / ' + total);
+                  panel.find('.fb-cap-title').text(slide.data('cap-title') || '');
+                  panel.find('.fb-cap-body').text(slide.data('cap-body') || '');
+                };
+                paint(0);
+                a.on('changed.owl.carousel', function (ev) {
+                  // relative() maps a cloned index back to the real slide when loop is on
+                  var i = ev.relatedTarget.relative(ev.item.index);
+                  if (isNaN(i)) return;
+                  paint(((i % ev.item.count) + ev.item.count) % ev.item.count);
+                });
+              }
             });
          }
     }
