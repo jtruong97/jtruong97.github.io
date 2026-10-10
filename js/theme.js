@@ -331,6 +331,22 @@ $(function () {
 });
 
 /*------------------------
+   Cross-links between project modals
+-------------------------- */
+// A .popup-ajax link inside an open popup is outside the gallery's
+// delegate scope, so magnific never binds it and the browser navigates
+// to the bare fragment. Close the popup and re-trigger the matching
+// card instead, which reuses the gallery's own ajaxContentAdded setup.
+$(document).on('click', '.mfp-content a.popup-ajax', function (e) {
+	e.preventDefault();
+	var href = $(this).attr('href');
+	var card = $('.portfolio-filter a.popup-ajax[href="' + href + '"]').first();
+	if (!card.length) return;
+	$.magnificPopup.close();
+	setTimeout(function () { card.trigger('click'); }, 350);
+});
+
+/*------------------------
    Contact Form (Formspree)
 -------------------------- */
 var form = $('form.contact-form');

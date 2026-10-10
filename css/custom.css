@@ -36,13 +36,6 @@
 	flex-direction: column;
 }
 
-.contact-label{
-	padding: .810rem .96rem;
-    height: inherit;
-	border-color: #dae1e3;
-    font-size: 16px;
-    color: #656565;
-}
 
 .contact-input{
 	border-color: #dae1e3;
@@ -158,3 +151,12 @@
   border:1px solid #2b2d34;
 }
 .fb-meta .fb-demo{ color:#2f9e68; font-weight:600; }
+.fb-points li{ font-size:.88rem; line-height:1.6; color:#5c6670; margin-bottom:.45rem; }
+.fb-links{ display:flex; flex-wrap:wrap; gap:.6rem 1.5rem; align-items:center; }
+.fb-cta{
+  display:inline-block; font-weight:600; font-size:.9rem;
+  background:#2f9e68; color:#fff !important; text-decoration:none;
+  padding:.55rem 1rem; border-radius:6px;
+}
+.fb-cta:hover{ background:#27855a; color:#fff !important; }
+.fb-links > a:not(.fb-cta){ font-size:.9rem; font-weight:600; }

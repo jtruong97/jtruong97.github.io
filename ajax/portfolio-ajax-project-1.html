@@ -5,8 +5,8 @@
     <p class="fb-tagline">A reading tracker built around the question Goodreads won&rsquo;t answer: <em>is this series actually finished?</em></p>
     <p class="fb-meta">
       <a href="https://fully-bookd.com" target="_blank" rel="noopener noreferrer">fully-bookd.com</a>
+      <span><a href="https://fully-bookd.com/features" target="_blank" rel="noopener noreferrer">How it works &rarr;</a></span>
       <span>Built and shipped solo</span>
-      <span>~15,000 titles</span>
       <span class="fb-demo">Try it with the demo account &mdash; no sign-up</span>
     </p>
   </div>
@@ -17,7 +17,7 @@
 
       <div class="item"
            data-cap-title="Track a series"
-           data-cap-body="Tracked series sit together with their status on show. Open one and every book in it is listed in order &mdash; mark them read, rate them, or move any single book between shelves without leaving the page. A Song of Ice and Fire reads &ldquo;ongoing, last book 2012, nothing announced in 14 years,&rdquo; which is the whole reason the app exists.">
+           data-cap-body="Tracked series sit together with their status on show. Open one and every book is listed in order, ready to rate or move between shelves.">
         <video class="fb-video" src="images/projects/fullybookd-desktop/d1-trackseries.mp4"
                poster="images/projects/fullybookd-desktop/d1-trackseries.jpg"
                loop muted playsinline preload="none"></video>
@@ -25,7 +25,7 @@
 
       <div class="item"
            data-cap-title="Release calendar"
-           data-cap-body="Every dated release from the series you track and the authors you follow lands on one month view, covers sitting on their release day. Add a new series straight from the calendar &mdash; search it, track it, and its upcoming books appear without leaving the page.">
+           data-cap-body="Releases from the series you track and authors you follow, on one month view. Add a series from here and its books appear straight away.">
         <video class="fb-video" src="images/projects/fullybookd-desktop/d2-calendar.mp4"
                poster="images/projects/fullybookd-desktop/d2-calendar.jpg"
                loop muted playsinline preload="none"></video>
@@ -33,7 +33,7 @@
 
       <div class="item"
            data-cap-title="Library and filters"
-           data-cap-body="Shelves for reading, read, want to read, did not finish and favorites, with per-format ownership and your own ratings. The filter that matters most: narrow a to-be-read pile to complete series only, so you never start something that has not finished. Sort by publish date, title, author, rating or page count.">
+           data-cap-body="Shelves, formats owned, your ratings. The filter that matters: narrow a to-be-read pile to complete series only.">
         <video class="fb-video" src="images/projects/fullybookd-desktop/d3-library.mp4"
                poster="images/projects/fullybookd-desktop/d3-library.jpg"
                loop muted playsinline preload="none"></video>
@@ -41,7 +41,7 @@
 
       <div class="item"
            data-cap-title="Book pages and reviews"
-           data-cap-body="Each book carries its series position, publication details, formats owned and the rest of the series beside it. Write a full review with a rating breakdown &mdash; plot, pacing and how it actually made you feel &mdash; kept private unless you want otherwise.">
+           data-cap-body="Series position, publication details, and the rest of the series beside it. Reviews carry a plot, pacing and feelings breakdown.">
         <video class="fb-video" src="images/projects/fullybookd-desktop/d4-bookdetail.mp4"
                poster="images/projects/fullybookd-desktop/d4-bookdetail.jpg"
                loop muted playsinline preload="none"></video>
@@ -49,7 +49,7 @@
 
       <div class="item"
            data-cap-title="Reading habits"
-           data-cap-body="A daily streak you keep by logging a day&rsquo;s reading, a yearly goal tracking against pace, what you are partway through, and what releases next &mdash; counted down in days, from the authors and series you already follow.">
+           data-cap-body="A streak you keep by logging a day&rsquo;s reading, a yearly goal tracking against pace, and what releases next, counted down in days.">
         <video class="fb-video" src="images/projects/fullybookd-desktop/d5-home.mp4"
                poster="images/projects/fullybookd-desktop/d5-home.jpg"
                loop muted playsinline preload="none"></video>
@@ -75,7 +75,13 @@
     <div class="col-lg-6">
       <div class="fb-section">
         <h4 class="text-4 font-weight-600">Under the hood</h4>
-        <p class="mb-0 fb-tech-note">Scheduled Supabase Edge Functions keep ~15,000 titles current &mdash; discovering releases from followed authors and backfilling metadata in bounded batches, with oldest-first queue rotation and a rate-limit circuit breaker so runs resume where they stopped. Metadata is reconciled across three external APIs with per-field fallback, validating publication dates against an independently-sourced anchor year rather than last-write-wins. Search hits the Postgres catalog through a fuzzy-match RPC before falling back to those APIs, ranked so a series name surfaces its sequels. Deduplication runs in PL/pgSQL via pg_cron, where dry runs against production data caught three matching rules with 85&ndash;99% false positives before any destructive merge.</p>
+        <p class="fb-tech-note">The catalog grows itself. A nightly cron adds new titles and keeps existing ones accurate &mdash; that pipeline is most of the work.</p>
+        <ul class="list-style-2 fb-points mb-0">
+          <li>Supabase Edge Functions run nightly on a cron, discovering new releases and backfilling metadata in bounded batches, with a rate-limit circuit breaker so runs resume where they stopped.</li>
+          <li>Three external APIs reconciled per-field, validating dates against an anchor year rather than last-write-wins.</li>
+          <li>Search hits Postgres through a fuzzy-match RPC before falling back to those APIs, ranked so a series name surfaces its sequels.</li>
+          <li>Deduplication in PL/pgSQL via pg_cron &mdash; dry runs caught three rules with 85&ndash;99% false positives before any destructive merge.</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -83,7 +89,10 @@
   <div class="fb-section fb-tech">
     <span class="fb-sub">Built with</span>
     <p class="mb-0">TypeScript &middot; React &middot; Tailwind CSS &middot; TanStack Query &middot; Supabase &middot; PostgreSQL &middot; PL/pgSQL &middot; Edge Functions &middot; OAuth 2.0 &middot; JWT &middot; Cloudflare</p>
-    <p class="mb-0 mt-2"><a href="ajax/portfolio-ajax-project-2.html" class="popup-ajax">See it on mobile &rarr;</a></p>
+    <p class="fb-links mb-0 mt-3">
+      <a class="fb-cta" href="https://fully-bookd.com/features" target="_blank" rel="noopener noreferrer">Read the full feature walkthrough &rarr;</a>
+      <a href="ajax/portfolio-ajax-project-2.html" class="popup-ajax">See it on mobile &rarr;</a>
+    </p>
   </div>
 
 </div>

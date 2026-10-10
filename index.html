@@ -128,7 +128,7 @@
             <h2 class="text-7 fw-600 mb-3">I'm <span class="text-primary">Jasmine Truong,</span> a Full-Stack Software Engineer</h2>
             <p>I'm a full-stack software engineer building React and TypeScript applications for an AI platform used by national security customers. What I enjoy most is taking a rough idea and turning it into something people actually use &mdash; working through the ambiguity with data engineers, figuring out the design, and shipping it. I build features end to end now, and I was promoted to Software Engineer II in under two years.</p>
             <p>I started out in healthcare as a medical assistant with a B.S. in biology. I switched to software because I love solving problems and building things from scratch, and I haven't looked back. Everything I know about engineering I learned by being a quick study and shipping &mdash; starting at App Academy and continuing every day since.</p>
-            <p>On the side I built <a href="#portfolio" class="smooth-scroll">FullyBookd</a>, a reading tracker for upcoming book releases that I use every day. It came out of a problem I kept hitting as a reader, and it's the clearest example of how I like to work: notice something missing, design it, build it, ship it.</p>
+            <p>On the side I built <a href="https://fully-bookd.com" target="_blank" rel="noopener noreferrer">FullyBookd</a>, a reading tracker for upcoming book releases that I use every day. It came out of a problem I kept hitting as a reader, and it's the clearest example of how I like to work: notice something missing, design it, build it, ship it. There's a <a href="https://fully-bookd.com/features" target="_blank" rel="noopener noreferrer">full walkthrough of how it works</a>, and a demo account if you'd rather just look around.</p>
             <p>Outside of work I read constantly and I'm closing in on a goal of 100 books, so recommendations are always welcome. I'm deep into sourdough baking and bead embroidery, I golf every so often, and I'm obsessed with matcha &mdash; I'll try a new matcha caf&eacute; anywhere. I travel internationally once or twice a year and I'm a lifelong foodie, so I'm always up for restaurant recommendations around Northern California, in either direction.</p>
             <p><strong>I'm currently open to new opportunities.</strong> I grew up in San Francisco and now split my time between the Bay Area and Sacramento &mdash; always happy to connect with engineers in either.</p>
           </div>
@@ -405,14 +405,14 @@
           >
             <input type="hidden" name="_subject" value="Portfolio contact form">
             <input type="text" name="_gotcha" style="display:none">
-            <label class="contact-label">
-              <input type="text" name="name" required placeholder="Name" class="contact-input">
+            <label>
+              <input type="text" name="name" required placeholder="Name" aria-label="Your name" class="contact-input">
             </label>
             <label>
-              <input type="email" name="email" required placeholder="Email" class="contact-input">
+              <input type="email" name="email" required placeholder="Email" aria-label="Your email address" class="contact-input">
             </label>
             <label>
-              <textarea name="message" placeholder="Message" required rows='5' class="contact-input"></textarea>
+              <textarea name="message" placeholder="Message" required rows='5' aria-label="Your message" class="contact-input"></textarea>
             </label>
             <!-- your other form fields go here -->
             <button type="submit" class="send-btn">Send Message</button>
