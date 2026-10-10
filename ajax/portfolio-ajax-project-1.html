@@ -8,15 +8,17 @@
         <div class="item"> <img class="img-fluid" alt="Library with reading status and filters" src="images/projects/fullybookd3.png"> </div>
         <div class="item"> <img class="img-fluid" alt="Book detail page with series position" src="images/projects/fullybookd4.png"> </div>
         <div class="item"> <img class="img-fluid" alt="Reading summary with streak and yearly goal" src="images/projects/fullybookd5.png"> </div>
+        <div class="item"> <img class="img-fluid" alt="Calendar in light theme" src="images/projects/fullybookd6.png"> </div>
       </div>
     </div>
     <div class="col-md-5">
       <h4 class="text-4 font-weight-600">Why I Built It:</h4>
       <p>I read a lot, and I kept running into the same problem. I'd finish the last published book in a series, hit a cliffhanger, and only then realize the series was unfinished &mdash; sometimes abandoned years earlier. I was tracking what I was reading in a notes app, which made it easy to lose the thread entirely and forget a series existed.</p>
       <p>Before starting anything new I'd research whether it was complete, and the answer was often wrong. Goodreads didn't solve it. So I built FullyBookd: start only completed series, or follow an unfinished one and get told when the final book is actually out.</p>
+      <p>The app answers the question directly &mdash; it will tell you, for instance, that <em>A Song of Ice and Fire</em> is still ongoing, that the last book landed in 2012, and that nothing has been announced in the fourteen years since.</p>
       <h4 class="text-4 font-weight-600 mt-4">What's Interesting:</h4>
       <p>Built and shipped solo. The catalog has grown from 13,000 to roughly 14,900 titles.</p>
-      <p>Beyond series tracking, it handles the rest of a reading life: a release calendar, per-format ownership (physical, e-book, audiobook), page-level progress, reading streaks, and yearly goals.</p>
+      <p>Beyond series tracking, it handles the rest of a reading life: a release calendar, per-format ownership (physical, e-book, audiobook), page-level progress, reading streaks, and yearly goals. It runs as a web app and as a native iOS app built with React Native and Expo, both against the same Supabase backend.</p>
       <ul class="list-style-2">
         <li>Scheduled serverless pipelines (Supabase Edge Functions) discover new titles from followed authors and backfill missing metadata &mdash; bounded batches, oldest-first queue rotation, and a rate-limit circuit breaker so runs resume where they left off.</li>
         <li>Metadata reconciled across three external APIs (Hardcover, Google Books, Open Library) with per-field fallback, validating candidate publication dates against an independently-sourced anchor year rather than taking last-write. A 0&ndash;100 quality score sets refresh cadence.</li>
@@ -24,9 +26,32 @@
         <li>Catalog deduplication automated in PL/pgSQL with normalized title/author matching, run via pg_cron with dry-run queries gating destructive merges.</li>
         <li>OAuth 2.0 and JWT auth with row-level security policies, making shelves, ratings, and reviews private by default.</li>
       </ul>
+      <h4 class="text-4 font-weight-600 mt-4">On iOS:</h4>
+      <p class="text-muted mb-3">Native app built with React Native and Expo, sharing the web app's Supabase backend.</p>
+      <div class="mobile-strip">
+        <figure>
+          <video src="images/projects/fullybookd-v1.mp4" poster="images/projects/fullybookd-v1.jpg"
+                 autoplay loop muted playsinline preload="metadata"
+                 aria-label="Series tracking showing A Song of Ice and Fire as ongoing with nothing announced in 14 years"></video>
+          <figcaption>Series status, stated plainly</figcaption>
+        </figure>
+        <figure>
+          <video src="images/projects/fullybookd-v2.mp4" poster="images/projects/fullybookd-v2.jpg"
+                 autoplay loop muted playsinline preload="metadata"
+                 aria-label="Logging today's reading and extending the streak"></video>
+          <figcaption>Logging a day's reading</figcaption>
+        </figure>
+        <figure>
+          <video src="images/projects/fullybookd-v3.mp4" poster="images/projects/fullybookd-v3.jpg"
+                 autoplay loop muted playsinline preload="metadata"
+                 aria-label="Moving a book between shelves and viewing new releases from followed authors"></video>
+          <figcaption>Shelves and followed authors</figcaption>
+        </figure>
+      </div>
+
       <h4 class="text-4 font-weight-600 mt-4">Project Details:</h4>
       <ul class="list-style-2">
-        <li><span class="text-dark font-weight-600 me-2">Technologies:</span>TypeScript, React, Tailwind CSS, TanStack Query, Supabase, PostgreSQL, PL/pgSQL, Edge Functions, OAuth 2.0, JWT, Cloudflare</li>
+        <li><span class="text-dark font-weight-600 me-2">Technologies:</span>TypeScript, React, React Native, Expo, Tailwind CSS, TanStack Query, Supabase, PostgreSQL, PL/pgSQL, Edge Functions, OAuth 2.0, JWT, Cloudflare</li>
         <li><span class="text-dark font-weight-600 me-2">URL:</span><a href="https://fully-bookd.com" target="_blank" rel="noopener noreferrer">fully-bookd.com</a></li>
       </ul>
     </div>
