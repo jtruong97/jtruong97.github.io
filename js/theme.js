@@ -197,12 +197,30 @@ $(this).magnificPopup({
                   panel.find('.fb-cap-title').text(slide.data('cap-title') || '');
                   panel.find('.fb-cap-body').text(slide.data('cap-body') || '');
                 };
+                // play only the visible clip; pause and rewind the rest
+                var playActive = function (i) {
+                  realItems().each(function (k) {
+                    var vid = $(this).find('video').get(0);
+                    if (!vid) return;
+                    if (k === i) {
+                      if (vid.preload === 'none') vid.preload = 'auto';
+                      var p = vid.play();
+                      if (p && p.catch) p.catch(function () {});
+                    } else {
+                      vid.pause();
+                      try { vid.currentTime = 0; } catch (err) {}
+                    }
+                  });
+                };
                 paint(0);
+                playActive(0);
                 a.on('changed.owl.carousel', function (ev) {
                   // relative() maps a cloned index back to the real slide when loop is on
                   var i = ev.relatedTarget.relative(ev.item.index);
                   if (isNaN(i)) return;
-                  paint(((i % ev.item.count) + ev.item.count) % ev.item.count);
+                  var real = ((i % ev.item.count) + ev.item.count) % ev.item.count;
+                  paint(real);
+                  playActive(real);
                 });
               }
             });

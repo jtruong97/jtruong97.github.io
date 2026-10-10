@@ -4,3 +4,7 @@
 images/projects/ScreenRecording*
 images/projects/Screen Recording*
 *.mov
+images/projects/fullybookd-desktop/*.mov
+images/projects/fullybookd-mobile/*.mov
+images/projects/fullybookd-desktop/*.MP4
+images/projects/fullybookd-mobile/*.MP4

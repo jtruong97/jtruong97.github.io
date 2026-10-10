@@ -80,38 +80,6 @@
 	align-self: center;
 }
 
-/* FullyBookd project: mobile screenshot strip */
-.mobile-strip{
-  display:flex;
-  gap:1rem;
-  justify-content:center;
-  flex-wrap:wrap;
-  margin-top:.5rem;
-}
-.mobile-strip figure{
-  flex:0 1 190px;
-  margin:0;
-  text-align:center;
-}
-.mobile-strip img{
-  width:100%;
-  border-radius:14px;
-  border:1px solid rgba(0,0,0,.12);
-  display:block;
-}
-.mobile-strip figcaption{
-  font-size:.8rem;
-  color:#6c757d;
-  margin-top:.5rem;
-  line-height:1.35;
-}
-.mobile-strip video{
-  width:100%;
-  border-radius:14px;
-  border:1px solid rgba(0,0,0,.12);
-  display:block;
-  background:#111;
-}
 
 /* ---- FullyBookd project ---- */
 .fb-head{ border-bottom:1px solid #e9ecef; padding-bottom:1.25rem; margin-bottom:1.5rem; }
@@ -168,3 +136,10 @@
 /* phone videos inside the mobile carousel */
 .fb-shots-phone .item{ display:flex; justify-content:center; background:#15161a; border-radius:8px; padding:1.25rem 0; }
 .fb-phone-video{ width:auto; max-height:560px; border-radius:16px; border:1px solid #2b2d34; display:block; }
+
+/* wider modal for the video tours */
+.ajax-container-wide{ max-width:1340px; }
+.fb-video{
+  width:100%; height:auto; display:block;
+  border-radius:8px; border:1px solid #e9ecef; background:#15161a;
+}
