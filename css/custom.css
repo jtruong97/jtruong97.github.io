@@ -36,13 +36,6 @@
 	flex-direction: column;
 }
 
-.contact-label{
-	padding: .810rem .96rem;
-    height: inherit;
-	border-color: #dae1e3;
-    font-size: 16px;
-    color: #656565;
-}
 
 .contact-input{
 	border-color: #dae1e3;
@@ -79,3 +72,91 @@
 	width: 220px;
 	align-self: center;
 }
+
+/* ---- FullyBookd project ---- */
+.fb-head{ border-bottom:1px solid #e9ecef; padding-bottom:1.25rem; margin-bottom:1.5rem; }
+.fb-tagline{ font-size:1.05rem; color:#495057; margin-bottom:.6rem; max-width:62ch; }
+.fb-meta{ font-size:.85rem; color:#868e96; margin:0; display:flex; flex-wrap:wrap; gap:.5rem 1rem; align-items:center; }
+.fb-meta span::before{ content:"\00b7"; margin-right:1rem; color:#ced4da; }
+.fb-meta a{ font-weight:600; }
+
+/* full-width shots */
+.fb-tour .fb-shots img{ border-radius:8px; border:1px solid #2b2d34; }
+
+/* caption sits under the image and swaps with it */
+.fb-caption{
+  margin-top:.75rem;
+  padding-top:.75rem;
+  border-top:2px solid #f1f3f5;
+}
+.fb-step{
+  display:inline-block; font-size:.7rem; font-weight:700; letter-spacing:.1em;
+  color:#adb5bd; margin-right:.75rem; vertical-align:2px;
+}
+.fb-cap-title{ display:inline; font-size:1.05rem; font-weight:600; }
+.fb-cap-body{
+  font-size:.93rem; line-height:1.65; color:#495057;
+  margin:.4rem 0 0; max-width:78ch;
+}
+
+.fb-below{ margin-top:2rem; }
+.fb-section{ margin-top:2rem; }
+.fb-below .fb-section:first-child{ margin-top:0; }
+.fb-section > h4{ margin-bottom:.75rem; }
+.fb-sub{
+  font-size:.75rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+  color:#868e96; margin-bottom:.4rem; display:block;
+}
+.fb-tech-note{ font-size:.88rem; line-height:1.7; color:#5c6670; }
+.fb-install{ font-size:.86rem; line-height:1.6; }
+.fb-tech{ border-top:1px solid #e9ecef; padding-top:1.25rem; margin-top:2.5rem; }
+.fb-tech p{ font-size:.86rem; color:#495057; }
+
+/* keep owl nav off the image edges */
+.fb-shots.owl-theme .owl-nav{ margin-top:.25rem; }
+
+@media (max-width: 991.98px){
+  .fb-caption{ min-height:0; }
+}
+
+/* platform tag in modal titles */
+.fb-platform{
+  font-size:.5em; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+  color:#868e96; border:1px solid #dee2e6; border-radius:999px;
+  padding:.25em .7em; vertical-align:middle; margin-left:.5rem;
+}
+
+/* wider modal for the video tours */
+.ajax-container-wide{ max-width:1340px; }
+
+/* shared device-frame treatment: clip sits on a dark ground */
+.fb-shots .item{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#15161a;
+  border-radius:10px;
+}
+.fb-shots-desktop .item{ padding:1.5rem; }
+.fb-shots-phone .item{ padding:1.25rem 0; }
+
+.fb-video{
+  width:100%; height:auto; display:block;
+  border-radius:8px;
+  border:1px solid #2b2d34;
+}
+.fb-phone-video{
+  width:auto; max-height:560px; display:block;
+  border-radius:16px;
+  border:1px solid #2b2d34;
+}
+.fb-meta .fb-demo{ color:#2f9e68; font-weight:600; }
+.fb-points li{ font-size:.88rem; line-height:1.6; color:#5c6670; margin-bottom:.45rem; }
+.fb-links{ display:flex; flex-wrap:wrap; gap:.6rem 1.5rem; align-items:center; }
+.fb-cta{
+  display:inline-block; font-weight:600; font-size:.9rem;
+  background:#2f9e68; color:#fff !important; text-decoration:none;
+  padding:.55rem 1rem; border-radius:6px;
+}
+.fb-cta:hover{ background:#27855a; color:#fff !important; }
+.fb-links > a:not(.fb-cta){ font-size:.9rem; font-weight:600; }

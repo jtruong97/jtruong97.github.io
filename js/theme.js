@@ -183,6 +183,46 @@ $(this).magnificPopup({
 					992:{items: a.data('items-lg'),}
 				}	
                 });
+
+              // Sync caption panel to the active slide (FullyBookd feature tour)
+              if (a.hasClass('fb-shots')) {
+                var panel = a.closest('.fb-tour').find('.fb-caption');
+                // exclude Owl's loop clones so indexes map to real slides
+                var realItems = function () { return a.find('.owl-item:not(.cloned) .item'); };
+                var total = realItems().length;
+                var paint = function (i) {
+                  var slide = realItems().eq(i);
+                  if (!slide.length) return;
+                  panel.find('.fb-step').text(('0' + (i + 1)).slice(-2) + ' / ' + ('0' + total).slice(-2));
+                  panel.find('.fb-cap-title').text(slide.data('cap-title') || '');
+                  panel.find('.fb-cap-body').text(slide.data('cap-body') || '');
+                };
+                // play only the visible clip; pause and rewind the rest
+                var playActive = function (i) {
+                  realItems().each(function (k) {
+                    var vid = $(this).find('video').get(0);
+                    if (!vid) return;
+                    if (k === i) {
+                      if (vid.preload === 'none') vid.preload = 'auto';
+                      var p = vid.play();
+                      if (p && p.catch) p.catch(function () {});
+                    } else {
+                      vid.pause();
+                      try { vid.currentTime = 0; } catch (err) {}
+                    }
+                  });
+                };
+                paint(0);
+                playActive(0);
+                a.on('changed.owl.carousel', function (ev) {
+                  // relative() maps a cloned index back to the real slide when loop is on
+                  var i = ev.relatedTarget.relative(ev.item.index);
+                  if (isNaN(i)) return;
+                  var real = ((i % ev.item.count) + ev.item.count) % ev.item.count;
+                  paint(real);
+                  playActive(real);
+                });
+              }
             });
          }
     }
@@ -291,87 +331,59 @@ $(function () {
 });
 
 /*------------------------
-   Contact Form
+   Cross-links between project modals
 -------------------------- */
-var form = $('#contact-form'); // contact form
-var submit = $('#submit-btn'); // submit button
+// A .popup-ajax link inside an open popup is outside the gallery's
+// delegate scope, so magnific never binds it and the browser navigates
+// to the bare fragment. Close the popup and re-trigger the matching
+// card instead, which reuses the gallery's own ajaxContentAdded setup.
+$(document).on('click', '.mfp-content a.popup-ajax', function (e) {
+	e.preventDefault();
+	var href = $(this).attr('href');
+	var card = $('.portfolio-filter a.popup-ajax[href="' + href + '"]').first();
+	if (!card.length) return;
+	$.magnificPopup.close();
+	setTimeout(function () { card.trigger('click'); }, 350);
+});
 
-// form submit event
+/*------------------------
+   Contact Form (Formspree)
+-------------------------- */
+var form = $('form.contact-form');
+var submit = form.find('.send-btn');
+
+function contactNotify(type, text) {
+	form.find('.form-alert').remove();
+	$('<div class="form-alert alert alert-' + type + ' mt-3" role="alert"></div>')
+		.text(text).insertBefore(submit).hide().fadeIn('fast');
+}
+
 form.on('submit', function (e) {
-	e.preventDefault(); // prevent default form submit
+	e.preventDefault();
+	var original = submit.html();
+	submit.attr('disabled', 'disabled').html('Sending\u2026');
 
-	if (typeof $('#google-recaptcha-v3').val() != "undefined") {
-		grecaptcha.ready(function () {
-			var site_key = $('#google-recaptcha-v3').attr('src').split("render=")[1];
-			grecaptcha.execute(site_key, {action: 'contact'}).then(function (token) {
-				var gdata = form.serialize() + '&g-recaptcha-response=' + token;
-				$.ajax({
-					url: 'php/mail.php',  // form action url
-					type: 'POST', 		  // form submit method get/post
-					dataType: 'json', 	  // request type html/json/xml
-					data: gdata, 		  // serialize form data
-					beforeSend: function () {
-						submit.attr("disabled", "disabled");
-						var loadingText = '<span role="status" aria-hidden="true" class="spinner-border spinner-border-sm align-self-center me-2"></span>Sending.....'; // change submit button text
-						if (submit.html() !== loadingText) {
-							submit.data('original-text', submit.html());
-							submit.html(loadingText);
-						}
-					},
-					success: function (data) {
-						submit.before(data.Message).fadeIn("slow"); // fade in response data 
-						submit.html(submit.data('original-text'));// reset submit button text
-						submit.removeAttr("disabled", "disabled");
-						if (data.response == 'success') {
-							form.trigger('reset'); // reset form
-						}
-						setTimeout(function () {
-							$('.alert-dismissible').fadeOut('slow', function(){
-								$(this).remove();
-							});
-						}, 3000);
-					},
-					error: function (e) {
-						console.log(e)
-					}
-				});
-			});
-		});
-	} else {
-		$.ajax({
-			url: 'php/mail.php', // form action url
-			type: 'POST', // form submit method get/post
-			dataType: 'json', // request type html/json/xml
-			data: form.serialize(), // serialize form data
-			beforeSend: function () {
-				submit.attr("disabled", "disabled");
-				var loadingText = '<span role="status" aria-hidden="true" class="spinner-border spinner-border-sm align-self-center me-2"></span>Sending.....'; // change submit button text
-				if (submit.html() !== loadingText) {
-					submit.data('original-text', submit.html());
-					submit.html(loadingText);
-				}
-			},
-			success: function (data) {
-				submit.before(data.Message).fadeIn("slow"); // fade in response data 
-				submit.html(submit.data('original-text'));// reset submit button text
-				submit.removeAttr("disabled", "disabled");
-				if (data.response == 'success') {
-					form.trigger('reset'); // reset form
-				}
-				setTimeout(function () {
-					$('.alert-dismissible').fadeOut('slow', function(){
-						$(this).remove();
-					});
-				}, 3500);
-				if (typeof $('#recaptcha-v2').val() != "undefined") {
-					grecaptcha.reset(); // reset reCaptcha
-				}
-			},
-			error: function (e) {
-				console.log(e)
+	$.ajax({
+		url: form.attr('action'),
+		type: 'POST',
+		dataType: 'json',
+		accepts: { json: 'application/json' },
+		data: form.serialize()
+	}).done(function () {
+		form.trigger('reset');
+		contactNotify('success', 'Thanks! Your message is on its way \u2014 I\u2019ll get back to you soon.');
+	}).fail(function (xhr) {
+		var msg = 'Something went wrong. Please email jas.truongg@gmail.com instead.';
+		try {
+			var r = JSON.parse(xhr.responseText);
+			if (r && r.errors && r.errors.length) {
+				msg = r.errors.map(function (x) { return x.message; }).join(' ');
 			}
-		});
-	}
+		} catch (err) {}
+		contactNotify('danger', msg);
+	}).always(function () {
+		submit.removeAttr('disabled').html(original);
+	});
 });
 
 })(jQuery)

@@ -1,0 +1,8 @@
+.DS_Store
+
+# Raw captures - only encoded web versions (.mp4) are committed.
+# NOTE: core.ignorecase is true here, so never use an uppercase *.MP4
+# pattern: it also matches the .mp4 files we DO want tracked.
+*.mov
+images/projects/**/ScreenRecording*
+images/projects/**/Screen Recording*

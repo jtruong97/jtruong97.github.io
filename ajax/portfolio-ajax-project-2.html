@@ -1,24 +1,77 @@
 <div class="container ajax-container">
-  <h2 class="text-6 font-weight-600 text-center mb-4">Munch</h2>
-  <div class="row g-4">
-    <div class="col-md-7">
-      <div class="owl-carousel owl-theme single-slideshow" data-autoplay="true" data-loop="true" data-nav="true" data-items="1">
-        <div class="item"> <img class="img-fluid" alt="" src="images/projects/munch1.png"> </div>
-        <div class="item"> <img class="img-fluid" alt="" src="images/projects/munch2.png"> </div>
-        <div class="item"> <img class="img-fluid" alt="" src="images/projects/munch3.png"> </div>
-        <div class="item"> <img class="img-fluid" alt="" src="images/projects/munch4.png"> </div>
-        <div class="item"> <img class="img-fluid" alt="" src="images/projects/munch5.png"> </div>
+
+  <div class="fb-head">
+    <h2 class="text-6 font-weight-600 mb-2">FullyBookd <span class="fb-platform">Mobile</span></h2>
+    <p class="fb-tagline">The same reading tracker, installed to your home screen and running full-screen &mdash; no app store involved.</p>
+    <p class="fb-meta">
+      <a href="https://fully-bookd.com" target="_blank" rel="noopener noreferrer">fully-bookd.com</a>
+      <span><a href="https://fully-bookd.com/features" target="_blank" rel="noopener noreferrer">How it works &rarr;</a></span>
+      <span>React Native &amp; Expo</span>
+      <span>Installable PWA</span>
+      <span class="fb-demo">Try it with the demo account &mdash; no sign-up</span>
+    </p>
+  </div>
+
+  <div class="fb-tour">
+    <div class="owl-carousel owl-theme single-slideshow fb-shots fb-shots-phone"
+         data-autoplay="false" data-loop="true" data-nav="true" data-dots="true" data-items="1">
+      <div class="item"
+           data-cap-title="Logging a day&rsquo;s reading"
+           data-cap-body="One tap records that you read today and extends your streak. The yearly goal updates with it.">
+        <video class="fb-phone-video" src="images/projects/fullybookd-v2.mp4" poster="images/projects/fullybookd-v2.jpg"
+               loop muted playsinline preload="none"></video>
+      </div>
+      <div class="item"
+           data-cap-title="Series status, stated plainly"
+           data-cap-body="Tracked series show whether they are complete or still ongoing &mdash; and when a series has stalled, it says so outright rather than leaving you to guess.">
+        <video class="fb-phone-video" src="images/projects/fullybookd-v1.mp4" poster="images/projects/fullybookd-v1.jpg"
+               loop muted playsinline preload="none"></video>
+      </div>
+      <div class="item"
+           data-cap-title="Shelves and followed authors"
+           data-cap-body="Move a book between shelves from anywhere it appears, and see new releases from the authors you follow as they are announced.">
+        <video class="fb-phone-video" src="images/projects/fullybookd-v3.mp4" poster="images/projects/fullybookd-v3.jpg"
+               loop muted playsinline preload="none"></video>
+      </div>
+      <div class="item"
+           data-cap-title="Add it to your home screen"
+           data-cap-body="Open fully-bookd.com in Safari, tap Share, then Add to Home Screen. It gets an app icon, opens full-screen with no browser chrome, and sits on the home screen beside Goodreads, Kindle and Libby &mdash; no app store, no download.">
+        <video class="fb-phone-video" src="images/projects/fullybookd-mobile/m-install.mp4"
+               poster="images/projects/fullybookd-mobile/m-install.jpg"
+               loop muted playsinline preload="none"></video>
       </div>
     </div>
-    <div class="col-md-5">
-      <h4 class="text-4 font-weight-600">Project Info:</h4>
-      <p>Munch is a Yelp-inspired clone developed collaboratively by a team of four software engineers. With Munch, users can explore a curated collection of restaurants inspired by our favorite dining experiences found in fictional restaurants from movies, television shows, and games. Additionally, users have the ability to contribute to the platform by adding and updating their own favorite fictional restaurants and participating with the community through reviews and discussions.</p>
-      <h4 class="text-4 font-weight-600 mt-4">Project Details:</h4>
-      <ul class="list-style-2">
-        <li><span class="text-dark font-weight-600 me-2">Technologies:</span>Python, JavaScript, HTML, CSS, React, Redux, PostgreSQL, Flask, AWS, OAuth2</li>
-        <li><span class="text-dark font-weight-600 me-2">URL:</span><a href="https://aa-munch.onrender.com/" target="_blank">https://aa-munch.onrender.com/</a></li>
-        <li><span class="text-dark font-weight-600 me-2">GitHub:</span><a href="https://github.com/JohnnyHa1017/munch" target="_blank">Munch</a></li>
-      </ul>
+
+    <div class="fb-caption">
+      <span class="fb-step">01 / 04</span>
+      <h4 class="fb-cap-title">Logging a day&rsquo;s reading</h4>
+      <p class="fb-cap-body">One tap records that you read today and extends your streak.</p>
     </div>
   </div>
+
+  <div class="row g-5 fb-below">
+    <div class="col-lg-6">
+      <div class="fb-section">
+        <h4 class="text-4 font-weight-600">How to install it</h4>
+        <p class="fb-install">On iPhone, open <a href="https://fully-bookd.com" target="_blank" rel="noopener noreferrer">fully-bookd.com</a> in Safari, tap Share, then <em>Add to Home Screen</em>. It gets an app icon and opens full-screen, just like a downloaded app &mdash; the last clip above walks through it.</p>
+        <p class="fb-install mb-0"><strong>Want to look around first?</strong> The sign-in screen has a <em>Try Demo Account</em> button &mdash; no sign-up needed.</p>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="fb-section">
+        <h4 class="text-4 font-weight-600">One codebase</h4>
+        <p class="fb-tech-note mb-0">Built with React Native and Expo so the browser and the installed app share a single codebase and a single Supabase backend &mdash; same catalog, same shelves, same streak, whichever one you open. Auth carries across both through OAuth 2.0 and JWT, with row-level security keeping shelves and ratings private by default.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="fb-section fb-tech">
+    <span class="fb-sub">Built with</span>
+    <p class="mb-0">TypeScript &middot; React Native &middot; Expo &middot; React &middot; TanStack Query &middot; Supabase &middot; PostgreSQL &middot; OAuth 2.0 &middot; JWT</p>
+    <p class="fb-links mb-0 mt-3">
+      <a class="fb-cta" href="https://fully-bookd.com/features" target="_blank" rel="noopener noreferrer">Read the full feature walkthrough &rarr;</a>
+      <a href="ajax/portfolio-ajax-project-1.html" class="popup-ajax">See the web app &rarr;</a>
+    </p>
+  </div>
+
 </div>
