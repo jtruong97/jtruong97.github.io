@@ -1,0 +1,6 @@
+.DS_Store
+
+# Raw camera/screen captures - commit only the encoded web versions
+images/projects/ScreenRecording*
+images/projects/Screen Recording*
+*.mov
