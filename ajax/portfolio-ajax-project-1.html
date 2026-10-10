@@ -1,7 +1,7 @@
 <div class="container ajax-container">
 
   <div class="fb-head">
-    <h2 class="text-6 font-weight-600 mb-2">FullyBookd</h2>
+    <h2 class="text-6 font-weight-600 mb-2">FullyBookd <span class="fb-platform">Web</span></h2>
     <p class="fb-tagline">A reading tracker built around the question Goodreads won&rsquo;t answer: <em>is this series actually finished?</em></p>
     <p class="fb-meta">
       <a href="https://fully-bookd.com" target="_blank" rel="noopener noreferrer">fully-bookd.com</a>
@@ -56,50 +56,25 @@
 
   <!-- Everything else below -->
   <div class="row g-5 fb-below">
-    <div class="col-lg-7">
+    <div class="col-lg-6">
       <div class="fb-section">
         <h4 class="text-4 font-weight-600">Why I built it</h4>
-        <p>I kept finishing the last published book in a series, hitting a cliffhanger, and only then realizing the series was unfinished &mdash; sometimes abandoned years earlier. I tracked what I was reading in a notes app, which made it easy to lose a series entirely, and researching whether something was complete before starting took real effort and was often wrong.</p>
+        <p>I kept finishing the last published book in a series, hitting a cliffhanger, and only then realizing the series was unfinished &mdash; sometimes abandoned years earlier. I tracked what I was reading in a notes app, which made it easy to lose a series entirely, and researching whether something was complete took real effort and was often wrong.</p>
         <p class="mb-0">So the app answers it directly. It will tell you that <em>A Song of Ice and Fire</em> is still ongoing, that the last book landed in 2012, and that nothing has been announced in the fourteen years since.</p>
       </div>
-
+    </div>
+    <div class="col-lg-6">
       <div class="fb-section">
         <h4 class="text-4 font-weight-600">Under the hood</h4>
-        <p class="mb-0 fb-tech-note">Scheduled Supabase Edge Functions keep ~15,000 titles current &mdash; discovering new releases from followed authors and backfilling metadata in bounded batches, with oldest-first queue rotation and a rate-limit circuit breaker so runs resume where they stopped. Metadata is reconciled across three external APIs with per-field fallback, validating publication dates against an independently-sourced anchor year rather than last-write-wins. Search hits the Postgres catalog through a fuzzy-match RPC before falling back to those APIs, ranked so a series name surfaces its sequels. Deduplication runs in PL/pgSQL via pg_cron, where dry runs against production data caught three matching rules with 85&ndash;99% false positives before any destructive merge. Auth is OAuth 2.0 and JWT with row-level security, making shelves and ratings private by default.</p>
-      </div>
-    </div>
-
-    <div class="col-lg-5">
-      <div class="fb-section">
-        <h4 class="text-4 font-weight-600">On your phone</h4>
-        <p class="text-muted fb-install">Installs to the home screen and runs full-screen &mdash; no app store needed. On iPhone, open <a href="https://fully-bookd.com" target="_blank" rel="noopener noreferrer">fully-bookd.com</a> in Safari, tap Share, then <em>Add to Home Screen</em>. On Android, open the browser menu and choose <em>Install app</em>.</p>
-        <div class="mobile-strip">
-          <figure>
-            <video src="images/projects/fullybookd-v1.mp4" poster="images/projects/fullybookd-v1.jpg"
-                   autoplay loop muted playsinline preload="metadata"
-                   aria-label="Series tracking showing A Song of Ice and Fire as ongoing with nothing announced in 14 years"></video>
-            <figcaption>Series status</figcaption>
-          </figure>
-          <figure>
-            <video src="images/projects/fullybookd-v2.mp4" poster="images/projects/fullybookd-v2.jpg"
-                   autoplay loop muted playsinline preload="metadata"
-                   aria-label="Logging today's reading and extending the streak"></video>
-            <figcaption>Logging a day</figcaption>
-          </figure>
-          <figure>
-            <video src="images/projects/fullybookd-v3.mp4" poster="images/projects/fullybookd-v3.jpg"
-                   autoplay loop muted playsinline preload="metadata"
-                   aria-label="Moving a book between shelves and viewing new releases from followed authors"></video>
-            <figcaption>Shelves</figcaption>
-          </figure>
-        </div>
+        <p class="mb-0 fb-tech-note">Scheduled Supabase Edge Functions keep ~15,000 titles current &mdash; discovering releases from followed authors and backfilling metadata in bounded batches, with oldest-first queue rotation and a rate-limit circuit breaker so runs resume where they stopped. Metadata is reconciled across three external APIs with per-field fallback, validating publication dates against an independently-sourced anchor year rather than last-write-wins. Search hits the Postgres catalog through a fuzzy-match RPC before falling back to those APIs, ranked so a series name surfaces its sequels. Deduplication runs in PL/pgSQL via pg_cron, where dry runs against production data caught three matching rules with 85&ndash;99% false positives before any destructive merge.</p>
       </div>
     </div>
   </div>
 
   <div class="fb-section fb-tech">
     <span class="fb-sub">Built with</span>
-    <p class="mb-0">TypeScript &middot; React &middot; React Native &middot; Expo &middot; Tailwind CSS &middot; TanStack Query &middot; Supabase &middot; PostgreSQL &middot; PL/pgSQL &middot; Edge Functions &middot; OAuth 2.0 &middot; JWT &middot; Cloudflare</p>
+    <p class="mb-0">TypeScript &middot; React &middot; Tailwind CSS &middot; TanStack Query &middot; Supabase &middot; PostgreSQL &middot; PL/pgSQL &middot; Edge Functions &middot; OAuth 2.0 &middot; JWT &middot; Cloudflare</p>
+    <p class="mb-0 mt-2"><a href="ajax/portfolio-ajax-project-2.html" class="popup-ajax">See it on mobile &rarr;</a></p>
   </div>
 
 </div>
