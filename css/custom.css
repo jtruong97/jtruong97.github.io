@@ -184,3 +184,47 @@
 .ew-stack{ font-size:.8rem; color:#868e96; margin-bottom:.9rem; }
 .ew-link{ margin-top:auto; font-size:.85rem; font-weight:600; color:#20c997; }
 .ew-card:hover .ew-link{ text-decoration:underline; }
+
+/* ---- Experience bullets ---- */
+.exp-list{ margin:0; padding-left:1.1rem; }
+.exp-list li{ margin-bottom:.45rem; line-height:1.6; }
+.exp-list li:last-child{ margin-bottom:0; }
+
+/* ---- Experience layout ---- */
+.exp-company-head{
+  display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; gap:.75rem 1.5rem;
+  padding:1.5rem 1.75rem; border-bottom:1px solid #e9ecef;
+}
+.exp-company-info{ flex:1 1 20rem; }
+.exp-roles{ padding:1.75rem 1.75rem .25rem; }
+.exp-role{ position:relative; padding-bottom:1.75rem; }
+.exp-role-meta{ position:relative; padding-left:1.75rem; }
+.exp-role-body{ padding-left:1.75rem; }
+/* timeline: dot per role, line joining them */
+.exp-role-meta::before{
+  content:""; position:absolute; left:.25rem; top:.45rem;
+  width:11px; height:11px; border-radius:50%; background:#20c997; box-shadow:0 0 0 4px #d2f4ea;
+}
+.exp-role:not(:last-child)::before{
+  content:""; position:absolute; left:calc(.25rem + 5px); top:1.4rem; bottom:-.2rem;
+  width:1px; background:#dee2e6;
+}
+.exp-date{ font-size:.85rem; color:#868e96; margin-bottom:.75rem; }
+@media (min-width:992px){
+  .exp-role{ display:flex; gap:2rem; }
+  .exp-role-meta{ flex:0 0 13.5rem; }
+  .exp-role-body{ flex:1; padding-left:0; }
+}
+
+/* ---- Tech skills: compact grid on small screens ---- */
+.tech-icon svg{ display:block; width:45px; height:45px; }
+@media (max-width:767.98px){
+  .tech-container{ display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:1.25rem .5rem; }
+  .tech-skills{ width:auto; margin:0; }
+  .tech-icon{ min-width:0; min-height:0; margin-bottom:.5rem; }
+  .tech-icon svg{ width:34px; height:34px; }
+  .tech-skills h3{ font-size:.8rem; line-height:1.25; text-align:center; margin-bottom:0; }
+}
+@media (max-width:419.98px){
+  .tech-container{ grid-template-columns:repeat(3, minmax(0, 1fr)); }
+}
